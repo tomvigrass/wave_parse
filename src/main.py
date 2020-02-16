@@ -23,7 +23,7 @@ def parse_file(filepath, label):
     signal = wav_file.readframes(-1)
     signal = np.fromstring(signal, "Int16")
     framerate = wav_file.getframerate()
-    logger.info(f'framerate: {framerate}, length: {len(signal) / framerate}')
+    logger.info(f'framerate: {framerate}, length (s): {len(signal) / framerate}')
 
     time_vector = np.linspace(0, len(signal) / framerate, num=len(signal))
 
@@ -43,11 +43,12 @@ def parse_args():
 
 
 def save_waveform(wave_data: pd.DataFrame, label: str):
-    plt.figure(1)
+    f = plt.figure(1)
     plt.title(f"Signal Wave: {label}")
     plt.plot(wave_data['time'], wave_data['signal_abs'])
     plt.show()
-    plt.savefig(f'{label}.pdf', format='pdf')
+    logging.info(f'saving plot to {label}.pdf')
+    f.savefig(f'{label}.pdf', format='pdf', bbox_inches='tight')
 
 
 def main():
