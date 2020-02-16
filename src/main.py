@@ -6,9 +6,6 @@ import wave
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
-
-sns.set_style("darkgrid")
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
@@ -33,7 +30,6 @@ def parse_file(filepath, label):
     wave_data = pd.DataFrame({'signal': signal, 'time': time_vector})
     wave_data['signal_abs'] = wave_data['signal'].abs()
     logger.info(wave_data.describe())
-
 
     save_waveform(wave_data[['signal_abs', 'time']], label)
 
