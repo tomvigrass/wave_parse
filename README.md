@@ -1,4 +1,4 @@
-# WAV Parser
+# WAV Parser for Alice!
 
 Using command line arguments, this pulls out the contents of a wav file and saves a plot of the sound profile to a PDF.
 
